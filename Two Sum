@@ -1,0 +1,15 @@
+class Solution:
+    def twoSum(self, nums: List[int], target: int) -> List[int]:
+        hashmap = {}
+        for i, n in enumerate (nums):
+            rozdil = target - n
+            if rozdil in hashmap:
+                return  [hashmap [rozdil], i]
+            hashmap[n] = i
+
+# Tento algoritmus využívá hash mapu pro efektivní hledání dvojice čísel, jejichž součet je roven targetu.
+# Pro každé číslo v poli 'nums' se vypočítá rozdíl mezi targetem a aktuálním číslem (rozdil = target - n).
+# Tento rozdíl je hledán v hash mapě, kde jsou již uloženy indexy předchozích čísel.
+# Pokud je rozdíl v hash mapě, znamená to, že jsme našli dvojici čísel, jejichž součet dává target.
+# Pokud rozdíl v hash mapě není, aktuální číslo (n) přidáme do hash mapy spolu s jeho indexem (i).
+# Tento algoritmus má časovou složitost O(n), protože pro každé číslo v poli děláme pouze jednu operaci hledání a vkládání do hash mapy.
