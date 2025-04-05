@@ -1,0 +1,23 @@
+class Solution:
+    def isPalindrome(self, x: int) -> bool:
+        if x < 0:  
+            return False
+
+        inverted_num = 0
+        num = x
+        for _ in str(num):
+            remainder = x % 10
+            inverted_num = inverted_num * 10 + remainder
+            x //= 10
+        if inverted_num == num:
+            return True
+        else:
+            return False
+
+# Funkce nejprve kontroluje, zda je číslo záporné. Pokud je, vrátí False,
+# protože záporná čísla nemohou být palindromy.
+# Poté uloží původní hodnotu čísla do proměnné `num` a začne obracet číslo:
+# - V každé iteraci smyčky získá poslední číslici čísla a přidá ji k obrácenému číslu.
+# - Číslice je odstraněna z původního čísla.
+# Na konci porovná původní a obrácené číslo. Pokud jsou stejné, vrátí True (je to palindrom),
+# jinak vrátí False.
