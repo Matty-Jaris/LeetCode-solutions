@@ -1,0 +1,17 @@
+class Solution:
+    def climbStairs(self, n: int) -> int:
+        one = 1
+        two = 1
+
+        for _ in range (n-1):
+            temp = one
+            one = one + two
+            two = temp
+        return one
+
+# Inicializujeme dvě proměnné 'one' a 'two' na hodnotu 1, které reprezentují počet způsobů pro 1 a 2 schody.
+# Iterujeme od 1 do n-1, protože první dva kroky (pro 1 a 2 schody) jsou již zpracovány.
+# V každé iteraci aktualizujeme 'one' na součet hodnoty 'one' a 'two', což představuje nové možné způsoby, jak se dostat na aktuální schod.
+# 'two' si uchovává předchozí hodnotu 'one' před aktualizací.
+# Po dokončení iterace 'one' obsahuje počet způsobů, jak se dostat na n-tý schod.
+# Vracíme hodnotu 'one', což je konečný počet způsobů, jak se dostat na vrchol.
