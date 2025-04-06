@@ -1,0 +1,35 @@
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def postorderTraversal(self, root: Optional[TreeNode]) -> List[int]:
+        stack = [root]
+        visit = [False]
+        res = []
+
+        while stack:
+            cur,v = stack.pop(), visit.pop()
+            if cur:
+                if v:
+                    res.append (cur.val)
+                else:
+                    stack.append (cur)
+                    visit.append (True)
+
+                    stack.append (cur.right)
+                    visit.append (False)
+                    stack.append (cur.left)
+                    visit.append (False)
+        return res
+
+# Inicializujeme zásobník se startovním uzlem (root) a odpovídající zásobník visit s počáteční hodnotou False.
+# Inicializujeme prázdný seznam res, do kterého budeme ukládat výsledné hodnoty uzlů.
+# Dokud zásobník není prázdný, opakujeme následující:
+#   - Vyjmeme aktuální uzel (cur) a jeho navštívení (v) ze zásobníků.
+#   - Pokud je uzel neprázdný:
+#       - Pokud byl již navštíven (v je True), přidáme jeho hodnotu do výsledného seznamu.
+#       - Pokud nebyl navštíven, znovu vložíme aktuální uzel se stavem True a následně vložíme jeho pravého a levého potomka se stavem False.
+# Nakonec vrátíme seznam res obsahující hodnoty uzlů v postorder pořadí.
