@@ -1,0 +1,45 @@
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def minDepth(self, root: Optional[TreeNode]) -> int:
+
+        # Recursion
+        if not root:
+            return 0
+        if not root.left:
+            return 1 + self.minDepth (root.right)
+        if not root.right:
+            return 1 + self.minDepth (root.left)
+
+        return 1 + min (self.minDepth(root.left), self.minDepth(root.right))
+
+        # Iteration - BFS
+        if not root:
+            return 0
+        queue = deque([(root,1)])
+        
+        while queue:
+            node, level = queue.popleft ()
+            
+            if node:
+                queue.append ((node.left, level + 1))
+                queue.append ((node.right, level + 1))
+                if not node.left and not node.right:
+                    return level
+
+# Rekurzivní přístup:
+# 1. Pokud je strom prázdný, vrátíme 0.
+# 2. Pokud nemá uzel levého potomka, spočítáme minimální hloubku pouze pravého podstromu.
+# 3. Pokud nemá uzel pravého potomka, spočítáme minimální hloubku pouze levého podstromu.
+# 4. Pokud má uzel oba potomky, vrátíme 1 plus minimum z minimálních hloubek levého a pravého podstromu.
+
+# Iterativní přístup (BFS):
+# 1. Pokud je strom prázdný, vrátíme 0.
+# 2. Použijeme frontu, do které vložíme kořen a počáteční úroveň 1.
+# 3. Pro každý uzel vyjmutý z fronty:
+#    - Přidáme jeho potomky s úrovní zvýšenou o 1.
+#    - Pokud je uzel list (nemá žádné potomky), vrátíme aktuální úroveň jako minimální hloubku.
