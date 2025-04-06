@@ -1,0 +1,25 @@
+class Solution:
+    def addBinary(self, a: str, b: str) -> str:
+        i,j = len(a)-1, len(b)-1
+        carry = 0
+        res = ""
+
+        while i >= 0 or j >= 0 or carry:
+            bit_a = int(a[i]) if i >= 0 else 0
+            bit_b = int(b[j]) if j >= 0 else 0
+
+            total = bit_a + bit_b + carry
+            res += str(total%2)
+            carry = total//2
+            i -= 1
+            j -= 1
+        return res [::-1]
+
+# Inicializujeme proměnné i a j na poslední indexy obou řetězců a nastavíme přenos carry na 0.
+# Vytvoříme prázdný řetězec res pro uložení výsledku.
+# Používáme smyčku, která probíhá, dokud nejsou zpracovány všechny bity nebo dokud existuje přenos carry.
+# Na každé iteraci získáme aktuální bit z každého řetězce (pokud existuje) a spočítáme součet.
+# Součet bitů a přenosu přidáme do výsledného řetězce res.
+# Vypočítáme nový přenos carry, který bude 0 nebo 1.
+# Snižujeme indexy i a j, abychom se posunuli na další bit.
+# Po ukončení smyčky vrátíme výsledek v obráceném pořadí, protože jsme sčítali od posledního bitu.
