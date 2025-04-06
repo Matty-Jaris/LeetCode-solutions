@@ -1,0 +1,16 @@
+class Solution:
+    def convertToTitle(self, columnNumber: int) -> str:
+        res = ""
+        while columnNumber > 0:
+            columnNumber -= 1
+            res += chr(columnNumber%26+65)
+            columnNumber //= 26
+        return res [::-1]
+
+# Inicializujeme prázdný řetězec pro uchování výsledného názvu sloupce.
+# Dokud je columnNumber větší než 0, provádíme následující kroky:
+#   - Snížíme columnNumber o 1, aby se vyrovnala indexace (0 odpovídá A).
+#   - Vypočítáme zbytek při dělení columnNumber číslem 26, což určí odpovídající písmeno.
+#   - Převedeme tento zbytek na znak (A-Z) a připojíme ho do výsledného řetězce.
+#   - Aktualizujeme columnNumber dělením 26.
+# Protože jsou písmena generována od nejméně významného k nejvýznamnějšímu, obrátíme výsledný řetězec před vrácením.
