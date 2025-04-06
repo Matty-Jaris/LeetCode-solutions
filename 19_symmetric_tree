@@ -1,0 +1,46 @@
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def isSymmetric(self, root: Optional[TreeNode]) -> bool:
+        # Recursion
+        def dfs (left, right):
+            if not left and not right:
+                return True
+            if not left or not right or left.val != right.val:
+                return False
+            
+            return dfs(left.left, right.right) and dfs(left.right, right.left)
+        return dfs (root.left, root.right)
+
+        # Iteration - DFS
+        stack = [(root.left,root.right)]
+        while stack:
+            left, right = stack.pop()
+            if not left and not right:
+                continue
+            if not left or not right or left.val != right.val:
+                return False
+            stack.append ((left.left,right.right))
+            stack.append ((left.right,right.left))
+        if not stack:
+            return True
+
+# Rekurzivní přístup:
+# 1. Definujeme pomocnou funkci, která přijímá dva uzly (levý a pravý) a kontroluje jejich symetrii.
+# 2. Pokud jsou oba uzly prázdné, vrátíme True, protože symetrie je zachována.
+# 3. Pokud jeden z uzlů je prázdný nebo mají odlišné hodnoty, vrátíme False, což znamená, že strom není symetrický.
+# 4. Rekurzivně voláme funkci pro porovnání vnější dvojice (levý.left a pravý.right) a vnitřní dvojice (levý.right a pravý.left).
+
+# Iterativní přístup (DFS):
+# 1. Inicializujeme zásobník se začáteční dvojicí uzlů (levý a pravý podstrom kořene).
+# 2. V průběhu smyčky vyjímáme z zásobníku dvojici uzlů a kontrolujeme:
+#    - Pokud jsou oba uzly prázdné, pokračujeme dále.
+#    - Pokud jeden z uzlů je prázdný nebo mají odlišné hodnoty, strom není symetrický, vracíme False.
+# 3. Pokud jsou kontrolované uzly v pořádku, přidáme do zásobníku dvojice odpovídajících potomků:
+#    - První dvojice obsahuje levý podstrom levého uzlu a pravý podstrom pravého uzlu.
+#    - Druhá dvojice obsahuje pravý podstrom levého uzlu a levý podstrom pravého uzlu.
+# 4. Pokud projdeme celý zásobník bez nalezení nesouladu, strom je symetrický a vracíme True.
