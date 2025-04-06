@@ -1,0 +1,14 @@
+class Solution:
+    def removeElement(self, nums: List[int], val: int) -> int:
+        j = 0
+        for i in range(len(nums)):
+            if nums[i] != val:
+                nums[j] = nums[i]
+                j += 1
+        return j
+
+# Inicializujeme proměnnou j na 0, která bude ukazovat na pozici pro prvky, které nejsou rovny dané hodnotě.
+# Procházíme celé pole nums:
+# - Pokud prvek není roven hodnotě val, uložíme ho na pozici j v poli.
+# - Po každé takové operaci zvýšíme j, abychom ukázali na další pozici pro hodnotu, která není rovna val.
+# Po dokončení cyklu vrátíme hodnotu j, což je počet prvků, které nejsou rovny val.
