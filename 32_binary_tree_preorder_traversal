@@ -1,0 +1,27 @@
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def preorderTraversal(self, root: Optional[TreeNode]) -> List[int]:
+        stack = []
+        res = []
+        while stack or root:
+            while root:
+                stack.append (root)
+                res.append (root.val)
+                root = root.left
+            root = stack.pop ()
+            root = root.right
+        return res
+
+# Inicializujeme prázdný zásobník pro uchovávání uzlů a prázdný seznam pro výsledky.
+# Dokud zásobník není prázdný nebo dokud není aktuální uzel prázdný:
+#   - Procházejeme levý podstrom: 
+#       - Přidáváme každý navštívený uzel do zásobníku.
+#       - Ihned přidáváme hodnotu uzlu do výsledného seznamu (pre-order: kořen, levý, pravý).
+#       - Posouváme se na levého potomka.
+#   - Jakmile dojdeme k nejlevějšímu uzlu, vezmeme poslední uzel ze zásobníku a přejdeme na jeho pravého potomka.
+# Vrátíme výsledný seznam obsahující hodnoty uzlů ve správném pre-order pořadí.
