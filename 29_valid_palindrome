@@ -1,0 +1,23 @@
+class Solution:
+    def isPalindrome(self, s: str) -> bool:
+        l,r = 0, len(s)-1
+
+        while l < r:
+            if not s[l].isalnum ():
+                l += 1
+                continue
+            if not s[r].isalnum ():
+                r -= 1
+                continue
+            if s[l].lower () != s[r].lower ():
+                return False
+            l += 1
+            r -= 1
+        return True
+# Inicializujeme dva ukazatele: l na začátku řetězce a r na konci řetězce.
+# Smyčka běží, dokud se ukazatele neprotnou (l < r).
+# Pokud znak na pozici l není alfanumerický, posuneme l doprava a pokračujeme na další iteraci.
+# Pokud znak na pozici r není alfanumerický, posuneme r doleva a pokračujeme na další iteraci.
+# Porovnáme znaky na pozicích l a r po převedení na malá písmena; pokud se neshodují, řetězec není palindrom a vrátíme False.
+# Pokud znaky sedí, posuneme oba ukazatele směrem ke středu řetězce.
+# Pokud projdeme celý řetězec bez rozdílu, řetězec je palindrom, a proto vrátíme True.
