@@ -1,0 +1,11 @@
+class Solution:
+    def strStr(self, haystack: str, needle: str) -> int:
+        for i in range(len(haystack)-len(needle)+1):
+            if haystack[i:i + len(needle)] == needle:
+                return i
+        return -1
+        
+# Procházejte řetězec 'haystack' od indexu 0 do bodu, kde zbývající část řetězce může stále obsahovat 'needle'
+# Pro každý index zkontrolujte, zda podřetězec začínající na tomto indexu odpovídá 'needle'
+# Pokud je shoda nalezena, vraťte aktuální index jako první výskyt 'needle'
+# Pokud žádná shoda není nalezena po celém procházení, vraťte -1, což znamená, že 'needle' není součástí 'haystack'
