@@ -1,0 +1,39 @@
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def isSameTree(self, p: Optional[TreeNode], q: Optional[TreeNode]) -> bool:
+        # Recursion
+        if not p and not q:
+            return True
+        if not p or not q or p.val != q.val:
+            return False
+        
+        return self.isSameTree (p.left,q.left) and self.isSameTree(p.right,q.right)
+
+        # Iteration - DFS
+        stack = [(p,q)]
+        while stack:
+            left, right = stack.pop()
+            if not left and not right:
+                continue
+            if not left or not right or left.val != right.val:
+                return False
+            stack.append ((left.left,right.left))
+            stack.append ((left.right,right.right))
+        if not stack:
+            return True
+
+# Používáme rekurzivní přístup pro porovnání stromů.
+# Pokud jsou oba stromy prázdné, jsou stejné.
+# Pokud jeden strom je prázdný nebo mají uzly odlišné hodnoty, vracíme False.
+# Rekurzivně kontrolujeme levé a pravé podstromy.
+
+# Alternativně používáme iterativní přístup s využitím DFS (hloubkové prohledávání).
+# Začneme s kořeny obou stromů a porovnáváme je.
+# Pokud jsou oba uzly prázdné, pokračujeme.
+# Pokud jeden uzel je prázdný nebo mají odlišné hodnoty, vracíme False.
+# Pokračujeme v prohledávání levého a pravého podstromu přidáním nových uzlů do zásobníku.
