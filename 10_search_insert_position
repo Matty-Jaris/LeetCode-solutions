@@ -1,0 +1,23 @@
+class Solution:
+    def searchInsert(self, nums: List[int], target: int) -> int:
+        l,r = 0, len(nums)-1
+
+        while l <= r:
+            mid = (l+r)//2
+            
+            if nums[mid] == target:
+                return mid
+            
+            if nums[mid] < target:
+                l = mid + 1
+            if nums[mid] > target:
+                r = mid - 1
+        return l
+
+# Inicializujeme proměnné l a r pro levý a pravý index pole.
+# Používáme binární vyhledávání, dokud není levý index větší než pravý.
+# Vypočítáme střední prvek a porovnáme ho s cílovou hodnotou.
+# Pokud je prvek na střední pozici shodný s cílovým, vrátíme jeho index.
+# Pokud je střední prvek menší než cílový, upravíme levý index na střed + 1.
+# Pokud je střední prvek větší než cílový, upravíme pravý index na střed - 1.
+# Pokud prvek nenalezneme, vrátíme index, kde by měl být cílový prvek vložen.
