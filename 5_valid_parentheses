@@ -1,0 +1,31 @@
+class Solution:
+    def isValid(self, s: str) -> bool:
+        parentheses = {
+            ')' : '(',
+            ']' : '[',
+            '}' : '{',
+            }
+        
+        stack = []
+        for p in s:
+            if p in parentheses:
+                if stack and stack[-1] == parentheses[p]:
+                    stack.pop ()
+                else:
+                    return False
+            else:
+                stack.append (p)
+        if not stack:
+            return True
+        else:
+            return False
+# Vytvoříme slovník, který mapuje uzavírací závorky na odpovídající otevřené závorky.
+# Inicializujeme zásobník pro uchovávání otevřených závorek.
+# Procházíme každý znak v řetězci:
+# - Pokud je znak uzavírací závorka, zkontrolujeme, zda odpovídá poslední otevřené závorce v zásobníku.
+# - Pokud odpovídá, odstraníme tuto otevřenou závorku ze zásobníku.
+# - Pokud neodpovídá, vrátíme False (řetězec není validní).
+# - Pokud je znak otevřená závorka, přidáme ji do zásobníku.
+# Na konci zkontrolujeme, zda je zásobník prázdný:
+# - Pokud je prázdný, všechny závorky byly správně uzavřeny, vrátíme True.
+# - Pokud není prázdný, znamená to, že některé závorky nebyly uzavřeny, vrátíme False.
