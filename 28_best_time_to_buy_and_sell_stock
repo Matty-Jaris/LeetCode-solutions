@@ -1,0 +1,21 @@
+class Solution:
+    def maxProfit(self, prices: List[int]) -> int:
+        minPrice = float('inf')
+        maxProfit = 0
+
+        for price in prices:
+            if price < minPrice:
+                minPrice = price
+            profit = price - minPrice
+
+            if profit > maxProfit:
+                maxProfit = profit
+        return maxProfit
+
+# Inicializujeme proměnnou minPrice na nekonečno, aby bylo možné najít nejnižší cenu.
+# Inicializujeme proměnnou maxProfit na 0, která bude uchovávat maximální zisk.
+# Pro každý prvek (cenu) v poli prices:
+#   - Pokud je aktuální cena nižší než minPrice, aktualizujeme minPrice.
+#   - Vypočítáme potenciální zisk jako rozdíl mezi aktuální cenou a minPrice.
+#   - Pokud je vypočítaný zisk vyšší než maxProfit, aktualizujeme maxProfit.
+# Nakonec vrátíme hodnotu maxProfit jako maximální dosažitelný zisk.
