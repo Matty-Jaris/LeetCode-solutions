@@ -1,0 +1,26 @@
+class Solution:
+    def mySqrt(self, x: int) -> int:
+        l,r = 0, x
+        res = 0
+        while l <= r:
+            mid = (l+r)//2
+            mid_2 = mid**2
+
+            if mid_2 == x:
+                return mid
+            
+            if mid_2 < x:
+                res = mid
+                l = mid + 1
+            if mid_2 > x:
+                r = mid - 1
+        return res
+
+# Inicializujeme levý a pravý index (l, r) pro binární vyhledávání, počínaje od 0 do x.
+# Vytváříme proměnnou res pro uchování výsledku.
+# Používáme binární vyhledávání, dokud levý index není větší než pravý.
+# Vypočítáme střední hodnotu mid a její druhou mocninu mid_2.
+# Pokud je druhá mocnina rovna x, vrátíme střední hodnotu jako výsledek.
+# Pokud je druhá mocnina menší než x, uložíme střední hodnotu do res a posuneme levý index.
+# Pokud je druhá mocnina větší než x, posuneme pravý index.
+# Po dokončení binárního vyhledávání vrátíme uložený výsledek res, který bude odpovídat celočíselné hodnotě druhé odmocniny.
