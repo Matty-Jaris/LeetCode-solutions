@@ -1,0 +1,14 @@
+class Solution:
+    def plusOne(self, digits: List[int]) -> List[int]:
+        for i in range(len(digits)-1,-1,-1):
+            if digits[i] == 9:
+                digits[i] = 0
+            else:
+                digits[i] += 1
+                return digits
+        return [1] + digits
+
+# Procházím pole od konce směrem na začátek
+# Pokud narazím na 9, nastavím ji na 0 a pokračuji (přenos)
+# Pokud číslice není 9, přičtu 1 a vrátím výsledek (žádný další přenos)
+# Pokud byly všechny číslice 9, přidám 1 na začátek pole (např. 999 -> 1000)
