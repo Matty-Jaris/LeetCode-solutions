@@ -1,0 +1,11 @@
+class Solution:
+    def singleNumber(self, nums: List[int]) -> int:
+        res = 0
+        for n in nums:
+            res ^= n
+        return res
+
+# Inicializujeme proměnnou 'res' na 0, která bude uchovávat výsledný počet.
+# Pro každý prvek v poli 'nums' aplikujeme operaci XOR, čímž se vyruší dvojice stejných čísel.
+# Po zpracování všech prvků bude 'res' obsahovat jediné číslo, které se nevyskytuje dvakrát.
+# Vrátíme hodnotu 'res'.
