@@ -1,0 +1,33 @@
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+class Solution:
+    def mergeTwoLists(self, list1: Optional[ListNode], list2: Optional[ListNode]) -> Optional[ListNode]:
+        dummy = ListNode ()
+        tail = dummy
+
+        while list1 and list2:
+            if list1.val < list2.val:
+                tail.next = list1
+                list1 = list1.next
+            else:
+                tail.next = list2
+                list2 = list2.next
+            tail = tail.next
+        
+        if list1:
+            tail.next = list1
+        if list2:
+            tail.next = list2
+        return dummy.next
+
+# Vytvoříme dummy uzel a nastavíme tail na tento uzel pro snadné přidávání uzlů do výsledného seznamu.
+# Procházíme oba seznamy (list1 a list2) dokud nejsou oba prázdné:
+# - Porovnáváme hodnoty na začátku obou seznamů.
+# - Pokud je hodnota v list1 menší, připojíme uzel list1 k výslednému seznamu.
+# - Pokud je hodnota v list2 menší nebo rovna, připojíme uzel list2 k výslednému seznamu.
+# - Posuneme ukazatel na poslední uzel (tail) v výsledném seznamu.
+# Pokud některý seznam není prázdný, připojíme zbývající uzly z tohoto seznamu k výslednému seznamu.
+# Na konci vrátíme seznam, který začíná od dummy.next, aby se vrátil správný výsledný seznam bez dummy uzlu.
